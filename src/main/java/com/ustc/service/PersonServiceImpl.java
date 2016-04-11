@@ -11,7 +11,7 @@ import com.ustc.model.Person;
 
 
   
-@WebService(endpointInterface = "com.ustc.service.HelloWorld",serviceName="HelloService")  
+ 
 public class PersonServiceImpl implements PersonService {
     private static final long serialVersionUID = 1L;
     private static Map<String, Person> ps = new HashMap<String, Person>();

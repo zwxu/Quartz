@@ -34,4 +34,9 @@ public class Person implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+	public Person() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
 }

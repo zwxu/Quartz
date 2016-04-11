@@ -4,21 +4,30 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:jaxws="http://cxf.apache.org/jaxws" 
     xmlns:jaxrs="http://cxf.apache.org/jaxrs"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
                        http://www.springframework.org/schema/beans/spring-beans.xsd
                        http://www.springframework.org/schema/context   
     					http://www.springframework.org/schema/context/spring-context.xsd   
                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
                        http://cxf.apache.org/jaxrs  
-                       http://cxf.apache.org/schemas/jaxrs.xsd">
+                       http://cxf.apache.org/schemas/jaxrs.xsd
+                       http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+						<!-- 开启注解 -->
+	<mvc:annotation-driven />
+                       
+   
     <!-- 
         ***注意*** 
         手动添加的内容：
         xmlns:jaxws="http://cxf.apache.org/jaxws"
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
      -->
+
+    
  	<bean id="personService" class="com.ustc.service.PersonServiceImpl" />
-	<context:component-scan base-package="com.ustc.test"  
+	<context:component-scan base-package="com.ustc"  
         use-default-filters="true" />  
     <!-- soap webservice -->  
     <jaxws:endpoint id="helloService" implementor="com.ustc.service.HelloWorldImpl" address="/helloService" />
