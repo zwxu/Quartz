@@ -5,7 +5,7 @@
  * Date:2012-09-15
  * Description:����һ��ִ�е��ȵľ����࣬��Spring�����ļ���ָ�����ô����work����
  * */
-package com.tsinghua.test;
+package com.ustc.test;
 
 import java.util.Date;
 
