@@ -7,11 +7,12 @@ import java.util.Map;
 
 import javax.jws.WebService;
 
+import org.springframework.stereotype.Component;
+
 import com.ustc.model.Person;  
 
 
-  
- 
+
 public class PersonServiceImpl implements PersonService {
     private static final long serialVersionUID = 1L;
     private static Map<String, Person> ps = new HashMap<String, Person>();

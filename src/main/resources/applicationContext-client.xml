@@ -5,30 +5,17 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
                        http://www.springframework.org/schema/beans/spring-beans.xsd
                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
-    <!-- 
-        ***注意*** 
-        手动添加的内容：
-        xmlns:jaxws="http://cxf.apache.org/jaxws"
-        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
-     -->
-    
-<!--     <import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
-
+                       
+	<!-- 此时cxf版本为3.0 -->
     <!-- 方法一 -->
-    
-	<jaxws:client id="Client"  
-                  serviceClass="com.ustc.service.HelloWorld"  
-                  address="http://localhost:8080/ws/helloService" /> 
-    <jaxws:client id="Client"  
-                  serviceClass="com.ustc.service.HelloWorld"  
-                  address="http://localhost:8080/ws/roomService" /> 
+	<jaxws:client id="helloServiceClient"  
+                  serviceClass="com.ustc.service.HelloService"  
+                  address="http://localhost:8080/ws/helloService" />  
     <!-- 方法二 -->         
-    <!--  <bean id="client" class="com.ustc.service.HelloWorld" factory-bean="clientFactory" factory-method="create" />
+    <!--  <bean id="helloServiceClient" class="com.ustc.service.HelloService" factory-bean="clientFactory" factory-method="create" />
                    
     <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
-        <property name="serviceClass" value="com.ustc.service.HelloWorld" />
+        <property name="serviceClass" value="com.ustc.service.HelloService" />
         <property name="address" value="http://localhost:8080/ws/helloService" />
     </bean> -->
 </beans>

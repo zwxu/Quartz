@@ -14,23 +14,19 @@
                        http://cxf.apache.org/schemas/jaxrs.xsd
                        http://www.springframework.org/schema/mvc
 						http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-						<!-- 开启注解 -->
+	<!-- 开启mvc注解 -->
 	<mvc:annotation-driven />
                        
-   
-    <!-- 
-        ***注意*** 
-        手动添加的内容：
-        xmlns:jaxws="http://cxf.apache.org/jaxws"
-        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
-     -->
+   <!-- 注解扫描包 -->
+	<context:component-scan base-package="com.ustc" />
 
     
  	<bean id="personService" class="com.ustc.service.PersonServiceImpl" />
-	<context:component-scan base-package="com.ustc"  
-        use-default-filters="true" />  
+ 	
+
+	
     <!-- soap webservice -->  
-    <jaxws:endpoint id="helloService" implementor="com.ustc.service.HelloWorldImpl" address="/helloService" />
+    <jaxws:endpoint id="helloService" implementor="com.ustc.service.HelloServiceImpl" address="/helloService" />
     <!-- restful webservice -->  
     <jaxrs:server id="rs1" address="/rs1">  
         <jaxrs:serviceBeans>  

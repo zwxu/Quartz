@@ -2,15 +2,15 @@ package com.ustc.common;
 
 import org.apache.cxf.frontend.ServerFactoryBean;
 
-import com.ustc.service.HelloWorld;
-import com.ustc.service.HelloWorldImpl;
+import com.ustc.service.HelloService;
+import com.ustc.service.HelloServiceImpl;
 
 public class Server {
 	 
     public Server() throws Exception{
-        HelloWorldImpl hw = new HelloWorldImpl();
+        HelloServiceImpl hw = new HelloServiceImpl();
         ServerFactoryBean sfb = new ServerFactoryBean();
-        sfb.setServiceClass(HelloWorld.class);
+        sfb.setServiceClass(HelloService.class);
         sfb.setServiceBean(hw);
         sfb.setAddress("http://localhost:9000/Hello");
         sfb.create();
