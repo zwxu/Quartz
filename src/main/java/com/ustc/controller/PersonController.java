@@ -19,6 +19,7 @@ import com.ustc.service.PersonServiceImpl;
 @Controller
 @RequestMapping(value = "/api/person")
 public class PersonController {
+	//注入webservice
 	@Resource
 	private HelloService helloServiceClient;
 	

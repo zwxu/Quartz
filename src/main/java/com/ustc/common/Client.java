@@ -12,7 +12,7 @@ import com.ustc.service.HelloService;
 public class Client {
 	/* Autowired byType Service byName*/
 	
-	 
+	 //此时可不启动web项目，直接测试
     public static void main(String[] args) {
        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
         //HelloWorld helloService = (HelloWorld) context.getBean("helloService");

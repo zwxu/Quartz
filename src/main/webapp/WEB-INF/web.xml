@@ -11,7 +11,10 @@
       <param-value>classpath:applicationContext-server.xml,classpath*:applicationContext-client.xml</param-value>
   </context-param>
  
-
+ <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
   <!-- 配置SpringMVC核心控制器 -->
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
@@ -43,9 +46,7 @@
     <url-pattern>/ws/*</url-pattern>
   </servlet-mapping>
   
-    <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
