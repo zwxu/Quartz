@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ibatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
+<ibatorConfiguration >
+<classPathEntry location="D:\Program Files\maven\respositories\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+  <ibatorContext id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/shop?characterEncoding=utf8" userId="root" password="" />
+     
+    <javaModelGenerator targetPackage="com.ustc.model" targetProject="Quartz/src/main/java" />
+    <sqlMapGenerator targetPackage="com.ustc.model" targetProject="Quartz/src/main/java" />
+    <daoGenerator targetPackage="com.ustc.model" targetProject="Quartz/src/main/java" type="SPRING" />
+    <table schema="shop" tableName="user" domainObjectName="User">
+      
+    </table>
+  </ibatorContext>
+</ibatorConfiguration>

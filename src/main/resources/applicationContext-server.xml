@@ -46,7 +46,7 @@
             <ref bean="myJobDetail" />  
         </property>  
         <property name="cronExpression">  
-            <value>0/5 * * * * ?</value>  
+            <value>0/5 * 15 * * ?</value>  
         </property>  
     </bean>  
     <!-- 调度的配置结束 -->  
@@ -69,17 +69,42 @@
 	<mvc:annotation-driven />
                        
    <!-- 注解扫描包 -->
-	<context:component-scan base-package="com.ustc" />
+	<!-- <context:component-scan base-package="com.ustc" /> -->
      
     
  	<bean id="personService" class="com.ustc.service.PersonServiceImpl" />
- 	
-
+ 	<!-- aop start-->
+     
+    <bean id="userServiceImpl"  
+        class="com.ustc.service.UserServiceImpl" />  
+  
+    <bean id="userInterceptor" class="com.ustc.interceptor.UserInterceptor" />  
+  
+    <bean id="userService"  
+        class="org.springframework.aop.framework.ProxyFactoryBean">  
+      <!-- 代理接口 -->  
+        <property name="proxyInterfaces">  
+            <value>com.ustc.service.UserService</value>  
+        </property>  
+       <!-- 目标实现类 -->  
+        <property name="target">  
+            <ref local="userServiceImpl" />   
+      </property>  
+        <!-- 拦截器 -->  
+        <property name="interceptorNames">  
+            <list>  
+                <value>userInterceptor</value>  
+            </list>  
+        </property>  
+    </bean>  
+  <!-- aop end-->
+ 
+     
 	
     <!-- soap webservice -->  
     <jaxws:endpoint id="helloService" implementor="com.ustc.service.HelloServiceImpl" address="/helloService" />
     <!-- restful webservice -->  
-    <jaxrs:server id="rs1" address="/rs1">  
+   <!--  <jaxrs:server id="rs1" address="/rs1">  
         <jaxrs:serviceBeans>  
             <ref bean="restSample" />  
         </jaxrs:serviceBeans>  
@@ -94,7 +119,7 @@
         <jaxrs:providers>  
             <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
         </jaxrs:providers>  
-    </jaxrs:server>  
+    </jaxrs:server>   -->
     
 
 
