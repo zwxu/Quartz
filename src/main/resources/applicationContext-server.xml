@@ -75,51 +75,52 @@
  	<bean id="personService" class="com.ustc.service.PersonServiceImpl" />
  	<!-- aop start-->
      
-    <bean id="userServiceImpl"  
-        class="com.ustc.service.UserServiceImpl" />  
+     <bean id="userDao" class="com.ustc.model.UserDAOImpl"  parent="aipSqlMapClientDAO"/>
+	<bean id="userService" class="com.ustc.service.UserServiceImpl">
+    	<property name="userDao" ref="userDao" />
+    </bean>
   
     <bean id="userInterceptor" class="com.ustc.interceptor.UserInterceptor" />  
   
-    <bean id="userService"  
-        class="org.springframework.aop.framework.ProxyFactoryBean">  
-      <!-- 代理接口 -->  
-        <property name="proxyInterfaces">  
-            <value>com.ustc.service.UserService</value>  
-        </property>  
-       <!-- 目标实现类 -->  
-        <property name="target">  
-            <ref local="userServiceImpl" />   
-      </property>  
-        <!-- 拦截器 -->  
-        <property name="interceptorNames">  
-            <list>  
-                <value>userInterceptor</value>  
-            </list>  
-        </property>  
-    </bean>  
+   <bean id="aipSqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>classpath:sqlmap/sqlmap-aip-config.xml</value>
+		</property>
+	</bean>
+
+	<bean id="aipSqlMapClientDAO" abstract="true">
+		<property name="sqlMapClient" ref="aipSqlMapClient" />
+		<property name="dataSource" ref="aipDataSource" />
+	</bean>
+
+	<bean id="aipDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/shop?characterEncoding=utf-8" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg>
+            <ref bean="aipDataSource"/>          
+        </constructor-arg>
+    </bean>
+
+	<!-- transcation -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="aipDataSource" />
+	</bean>
+	<bean name="transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
   <!-- aop end-->
  
      
-	
-    <!-- soap webservice -->  
-    <jaxws:endpoint id="helloService" implementor="com.ustc.service.HelloServiceImpl" address="/helloService" />
-    <!-- restful webservice -->  
-   <!--  <jaxrs:server id="rs1" address="/rs1">  
-        <jaxrs:serviceBeans>  
-            <ref bean="restSample" />  
-        </jaxrs:serviceBeans>  
-        <jaxrs:providers>  
-            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
-        </jaxrs:providers>  
-    </jaxrs:server>  
-    <jaxrs:server id="rs2" address="/rs2">  
-        <jaxrs:serviceBeans>  
-            <ref bean="personService" />  
-        </jaxrs:serviceBeans>  
-        <jaxrs:providers>  
-            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
-        </jaxrs:providers>  
-    </jaxrs:server>   -->
+
+    
     
 
 

@@ -5,6 +5,7 @@ import com.ustc.model.UserExample;
 import java.util.List;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
+@SuppressWarnings("deprecation")
 public class UserDAOImpl extends SqlMapClientDaoSupport implements UserDAO {
 
     /**
